@@ -1,20 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://birg5ndqh6rek"]
+[gd_scene load_steps=3 format=3 uid="uid://birg5ndqh6rek"]
 
 [ext_resource type="PackedScene" uid="uid://mokimmyf68q8" path="res://scenes/character.tscn" id="1_k0bu5"]
 [ext_resource type="PackedScene" uid="uid://dnybthoj4dasg" path="res://scenes/hud.tscn" id="2_u4ey7"]
-[ext_resource type="PackedScene" uid="uid://dc1kxfga7f71x" path="res://scenes/enemy.tscn" id="3_tk00y"]
 
 [node name="game_scene" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_k0bu5")]
 position = Vector2(500, 250)
+movement_speed = null
 
 [node name="HUD" parent="." instance=ExtResource("2_u4ey7")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-
-[node name="enemy" parent="." instance=ExtResource("3_tk00y")]
-position = Vector2(132.549, -36.2973)
 
 [editable path="HUD"]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dnybthoj4dasg"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+modulate = Color(0.579273, 0.169189, 0.203781, 1)
+layout_mode = 0
+offset_top = 1.0
+offset_right = 78.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 50
+text = "LIVES: 666"

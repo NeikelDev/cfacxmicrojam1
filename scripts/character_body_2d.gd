@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var movment_speed = 500
+@export var movement_speed = 500
 var character_direction : Vector2
 var goon_test
 
@@ -14,9 +14,9 @@ func _physics_process(delta):
 	elif character_direction.x < 0 : $Sprite2D.flip_h = false
 	
 	if character_direction :
-		velocity = character_direction * movment_speed
+		velocity = character_direction * movement_speed
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, movment_speed)
+		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
 	
 	
 	move_and_slide()

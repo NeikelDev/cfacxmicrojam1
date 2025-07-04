@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b073qw0hjf6ke"]
+
+[ext_resource type="Texture2D" uid="uid://4f6fct8b2mi5" path="res://icon.svg" id="1_sjadg"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_sogmx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6ugi"]
+size = Vector2(38, 37)
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(0.147908, 0.147908)
+script = ExtResource("1_sogmx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.296875, 0.296875)
+texture = ExtResource("1_sjadg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_d6ugi")

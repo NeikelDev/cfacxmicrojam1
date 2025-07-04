@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var movment_speed = 500
 var character_direction : Vector2
+var goon_test
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("left", "right")

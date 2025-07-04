@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds7qmcmyejaat"
-path="res://.godot/imported/right_arm.png-64d705b2830d4ba780ec2551ef5b3cc0.ctex"
+uid="uid://uv8psqn7iqe4"
+path="res://.godot/imported/arm_right_stage_2.png-5f926aef7dc789913919089c88b07f52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/right_arm.png"
-dest_files=["res://.godot/imported/right_arm.png-64d705b2830d4ba780ec2551ef5b3cc0.ctex"]
+source_file="res://sprites/stage_2/arm_right_stage_2.png"
+dest_files=["res://.godot/imported/arm_right_stage_2.png-5f926aef7dc789913919089c88b07f52.ctex"]
 
 [params]
 

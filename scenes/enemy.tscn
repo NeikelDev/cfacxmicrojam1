@@ -1,21 +1,96 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc1kxfga7f71x"]
+[gd_scene load_steps=8 format=3 uid="uid://dc1kxfga7f71x"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_0bbve"]
-[ext_resource type="Texture2D" uid="uid://4f6fct8b2mi5" path="res://icon.svg" id="1_yycmb"]
+[ext_resource type="Texture2D" uid="uid://btjohjannwloa" path="res://sprites/goblin_anim.png" id="2_meghs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh16v"]
-size = Vector2(123, 122)
+size = Vector2(25.769, 25.7691)
+
+[sub_resource type="Animation" id="Animation_63ah0"]
+resource_name = "attack_anim"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11, 12, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_7npve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oqre5"]
+resource_name = "move"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.06667, 4.06667, 5.9889),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 0.9), Vector2(1, 0.95)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0rjdw"]
+_data = {
+"RESET": SubResource("Animation_7npve"),
+"attack_anim": SubResource("Animation_63ah0"),
+"move": SubResource("Animation_oqre5")
+}
 
 [node name="enemy" type="Area2D" groups=["enemy"]]
-scale = Vector2(0.155225, 0.155225)
 script = ExtResource("1_0bbve")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -2)
+position = Vector2(0, 5.75983e-07)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_jh16v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.569909, 0.118459, 0.198351, 1)
-texture = ExtResource("1_yycmb")
+texture = ExtResource("2_meghs")
+hframes = 14
+
+[node name="attack" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0rjdw")
+}
+speed_scale = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="animation_finished" from="attack" to="." method="_on_attack_animation_finished"]

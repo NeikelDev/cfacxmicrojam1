@@ -1,20 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://birg5ndqh6rek"]
+[gd_scene load_steps=5 format=3 uid="uid://birg5ndqh6rek"]
 
 [ext_resource type="PackedScene" uid="uid://mokimmyf68q8" path="res://scenes/character.tscn" id="1_k0bu5"]
 [ext_resource type="PackedScene" uid="uid://dnybthoj4dasg" path="res://scenes/hud.tscn" id="2_u4ey7"]
 [ext_resource type="PackedScene" uid="uid://dc1kxfga7f71x" path="res://scenes/enemy.tscn" id="3_tk00y"]
+[ext_resource type="Script" path="res://scenes/spawner.gd" id="4_cs7nb"]
 
 [node name="game_scene" type="Node2D"]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_k0bu5")]
-position = Vector2(500, 250)
-
-[node name="HUD" parent="." instance=ExtResource("2_u4ey7")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_k0bu5")]
+position = Vector2(-12, -17)
+
+[node name="HUD" parent="." instance=ExtResource("2_u4ey7")]
+
 [node name="enemy" parent="." instance=ExtResource("3_tk00y")]
 position = Vector2(132.549, -36.2973)
+
+[node name="spawn_points" type="Node2D" parent="."]
+script = ExtResource("4_cs7nb")
+
+[node name="spawner" type="Node2D" parent="spawn_points"]
+position = Vector2(-422, 0)
+
+[node name="spawner2" type="Node2D" parent="spawn_points"]
+position = Vector2(-287, -185)
+
+[node name="spawner3" type="Node2D" parent="spawn_points"]
+position = Vector2(-2, -318)
+
+[node name="spawner4" type="Node2D" parent="spawn_points"]
+position = Vector2(308, -178)
+
+[node name="spawner5" type="Node2D" parent="spawn_points"]
+position = Vector2(382, -1)
+
+[node name="spawner6" type="Node2D" parent="spawn_points"]
+position = Vector2(382, -1)
+
+[node name="spawner7" type="Node2D" parent="spawn_points"]
+position = Vector2(275, 264)
+
+[node name="spawner8" type="Node2D" parent="spawn_points"]
+position = Vector2(0, 344)
+
+[node name="spawner9" type="Node2D" parent="spawn_points"]
+position = Vector2(-287, 244)
+
+[node name="spawn_timer" type="Timer" parent="spawn_points"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="spawn_points/spawn_timer" to="spawn_points" method="_on_spawn_timer_timeout"]
 
 [editable path="HUD"]

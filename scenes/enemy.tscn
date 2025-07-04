@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh16v"]
 size = Vector2(123, 122)
 
-[node name="enemy" type="Area2D"]
+[node name="enemy" type="Area2D" groups=["enemy"]]
 scale = Vector2(0.155225, 0.155225)
 script = ExtResource("1_0bbve")
 
@@ -17,3 +17,5 @@ shape = SubResource("RectangleShape2D_jh16v")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.569909, 0.118459, 0.198351, 1)
 texture = ExtResource("1_yycmb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

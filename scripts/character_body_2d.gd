@@ -2,14 +2,10 @@ extends CharacterBody2D
 
 @export var movement_speed = 200
 var character_direction : Vector2
-<<<<<<< Updated upstream
-var goon_test
-=======
 var mouse_pos : Vector2
 @onready var arm_1: Node2D = $arm_1
 @onready var arm_2: Node2D = $arm_2
 @onready var barrel_end: Node2D = $arm_1/barrel_end
->>>>>>> Stashed changes
 
 
 @onready var label: Label = $"../HUD/Control/Label"

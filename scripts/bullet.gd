@@ -1,5 +1,5 @@
 extends Area2D
-var speed = 1500
+var speed = 200
 	
 @onready var player = get_tree().get_nodes_in_group("player")
 func _physics_process(delta):

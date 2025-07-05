@@ -37,6 +37,7 @@ const GAME_OVER_SCREEN = preload("res://scenes/game_over_screen.tscn")
 
 @onready var color_rect: ColorRect = $"../vignette/CanvasLayer/ColorRect"
 
+@onready var game_over_plane: ColorRect = $"../game_over_plane"
 
 @onready var label: Label = $"../HUD/Control/Label"
 
@@ -64,7 +65,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("dash") and velocity != Vector2(0,0):
 		is_dashing = true
-		lives -= 100
+		lives -= 50
 		dash_timer.start()
 	move_and_slide()
 	
@@ -105,9 +106,11 @@ func handle_lives():
 		
 	
 	if lives <= 0:
+		lives = 0
 		game_over_screen.show()
+		game_over_plane.show()
 		get_tree().paused = true
-	label.text = "lives: " + str(round(lives))
+	label.text = str(round(lives))
 	rotate_towards_mouse()
 	if Input.is_action_just_pressed("mouse_left"):
 		shoot_sound.play()

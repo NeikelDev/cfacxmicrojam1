@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 100
+var speed = 200
 var damage = 10
 var health = 100
 var touching_player := false
@@ -29,7 +29,7 @@ func take_damage(amount):
 
 func _on_attack_animation_finished(anim_name: StringName) -> void:
 	if anim_name ==  "attack_anim" and touching_player == true:
-		player[0].lives -= 100
+		player[0].lives -= 25
 		attack.play("attack_anim")
 		
 		

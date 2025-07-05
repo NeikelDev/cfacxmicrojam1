@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dnybthoj4dasg"]
+[gd_scene load_steps=2 format=3 uid="uid://dnybthoj4dasg"]
+
+[ext_resource type="Texture2D" uid="uid://bvk7bigjmb8vo" path="res://sprites/heart.png" id="1_21r32"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -11,8 +13,14 @@ offset_bottom = 40.0
 [node name="Label" type="Label" parent="Control"]
 modulate = Color(0.579273, 0.169189, 0.203781, 1)
 layout_mode = 0
-offset_top = 1.0
-offset_right = 78.0
-offset_bottom = 24.0
+offset_left = 98.0
+offset_top = 7.0
+offset_right = 184.0
+offset_bottom = 76.0
 theme_override_font_sizes/font_size = 50
-text = "LIVES: 666"
+text = "666"
+
+[node name="Heart" type="Sprite2D" parent="Control"]
+position = Vector2(47, 41)
+scale = Vector2(5.25362, 5.25362)
+texture = ExtResource("1_21r32")

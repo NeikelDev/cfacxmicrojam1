@@ -79,7 +79,7 @@ rotation = 4.77946
 texture = ExtResource("3_8m8e1")
 
 [node name="barrel_end" type="Node2D" parent="arm_1"]
-position = Vector2(19.0907, -2.35461)
+position = Vector2(24.2234, -6.18287)
 
 [node name="LeftArm" type="Sprite2D" parent="."]
 position = Vector2(3, 1)

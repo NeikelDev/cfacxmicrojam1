@@ -112,6 +112,7 @@ func handle_lives():
 		get_tree().paused = true
 	label.text = str(round(lives))
 	rotate_towards_mouse()
+	
 	if Input.is_action_just_pressed("mouse_left"):
 		shoot_sound.play()
 		spawn_bullets()

@@ -15,10 +15,11 @@ func _process(delta: float) -> void:
 		var inst = BLOODSPLATTER.instantiate()
 		get_tree().root.add_child(inst)
 		inst.position = position
+		player[0].lives += 15
 		queue_free()
 	if touching_player == false:
-		attack.play("move")
 		attack.play("RESET")
+		attack.play("move")
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		touching_player = true

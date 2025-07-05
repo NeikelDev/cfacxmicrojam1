@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnybthoj4dasg" path="res://scenes/hud.tscn" id="2_u4ey7"]
 [ext_resource type="PackedScene" uid="uid://dc1kxfga7f71x" path="res://scenes/enemy.tscn" id="3_tk00y"]
 [ext_resource type="Script" path="res://scenes/spawner.gd" id="4_cs7nb"]
-[ext_resource type="PackedScene" uid="uid://cfx686liqwn6a" path="res://scenes/game_over_screen.tscn" id="5_rdglt"]
+[ext_resource type="Texture2D" uid="uid://b73tt53xuwiva" path="res://sprites/game_over_sprite.png" id="5_usqpf"]
 [ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="6_32ue8"]
 [ext_resource type="Texture2D" uid="uid://6vm5t2oiamsg" path="res://sprites/tile_stone.png" id="7_bvq60"]
 [ext_resource type="Texture2D" uid="uid://dtf4070r5cf5i" path="res://sprites/plants/plant_1.png" id="8_huy3t"]
@@ -75,8 +75,20 @@ position = Vector2(-287, 244)
 wait_time = 0.5
 autostart = true
 
-[node name="game_over_screen" parent="." instance=ExtResource("5_rdglt")]
+[node name="game_over_screen" type="CanvasLayer" parent="."]
 visible = false
+follow_viewport_scale = 0.001
+
+[node name="Control" type="Control" parent="game_over_screen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="game_over" type="Sprite2D" parent="game_over_screen/Control"]
+position = Vector2(955, 260)
+scale = Vector2(21.8157, 21.8157)
+texture = ExtResource("5_usqpf")
 
 [node name="vignette" type="Node" parent="."]
 

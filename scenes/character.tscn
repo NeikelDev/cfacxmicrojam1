@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://mokimmyf68q8"]
+[gd_scene load_steps=10 format=3 uid="uid://mokimmyf68q8"]
 
 [ext_resource type="Script" path="res://scripts/character_body_2d.gd" id="1_8nrid"]
 [ext_resource type="Texture2D" uid="uid://deen1o0o3mwtb" path="res://sprites/stage_1/body_stage_1.png" id="2_diyj6"]
 [ext_resource type="Texture2D" uid="uid://364tr12s2eg1" path="res://sprites/stage_1/arm_right_stage_1.png" id="3_8m8e1"]
 [ext_resource type="Texture2D" uid="uid://18e5lsvmomw4" path="res://sprites/stage_1/arm_left_stage_1.png" id="4_2mqni"]
+[ext_resource type="AudioStream" uid="uid://nbvhjpub3bfy" path="res://sounds/laserShoot.wav" id="5_ti76j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id0v0"]
 size = Vector2(21, 60)
@@ -92,5 +93,9 @@ speed_scale = 4.0
 
 [node name="dash_timer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ti76j")
+volume_db = -40.0
 
 [connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]

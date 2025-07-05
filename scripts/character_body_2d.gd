@@ -13,6 +13,7 @@ var mouse_pos : Vector2
 @onready var dash_timer: Timer = $dash_timer
 
 var is_dashing := false
+@onready var shoot_sound: AudioStreamPlayer = $shoot_sound
 
 const ARM_LEFT_STAGE_1 = preload("res://sprites/stage_1/arm_left_stage_1.png")
 const ARM_RIGHT_STAGE_1 = preload("res://sprites/stage_1/arm_right_stage_1.png")
@@ -30,6 +31,13 @@ const BODY_STAGE_4 = preload("res://sprites/stage_4/body.png")
 const ARM_LEFT_STAGE_4 = preload("res://sprites/stage_4/left_arm.png")
 const ARM_RIGHT_STAGE_4 = preload("res://sprites/stage_4/right_arm.png")
 
+const GAME_OVER_SCREEN = preload("res://scenes/game_over_screen.tscn")
+
+@onready var game_over_screen: CanvasLayer = $"../game_over_screen"
+
+@onready var color_rect: ColorRect = $"../vignette/CanvasLayer/ColorRect"
+
+
 @onready var label: Label = $"../HUD/Control/Label"
 
 var lives := 666.0
@@ -39,46 +47,31 @@ func _physics_process(delta):
 	character_direction.y = Input.get_axis("up", "down")
 	character_direction = character_direction.normalized()
 	if is_dashing == true:
-		movement_speed = 600
+		movement_speed = 800
 	else:
 		movement_speed = 200
-	print(movement_speed)
 	#flip
 	if character_direction.x > 0 : $body.flip_h = true
 	elif character_direction.x < 0 : $body.flip_h = false
 	
 	if character_direction:
 		velocity = character_direction * movement_speed
-		lives -= 15 * delta
+		lives -= 30 * delta
 		moving_anim.play("moving")
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
 		moving_anim.stop()
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and velocity != Vector2(0,0):
 		is_dashing = true
-		lives -= 50
+		lives -= 100
 		dash_timer.start()
 	move_and_slide()
 	
 
 func _process(delta: float) -> void:
-	
-	if lives <= 0:
-		print("You are dead")
-	label.text = "lives: " + str(round(lives))
-	rotate_towards_mouse()
-	if Input.is_action_just_pressed("mouse_left"):
-		spawn_bullets()
-		lives = lives - 5
-	if lives >= 499 and lives < 666:
-		change_appearances(ARM_LEFT_STAGE_1,ARM_RIGHT_STAGE_1,BODY_STAGE_1)
-	if lives >= 333 and lives < 499:
-		change_appearances(ARM_LEFT_STAGE_2,ARM_RIGHT_STAGE_2,BODY_STAGE_2)
-	if lives >= 166 and lives < 333:
-		change_appearances(ARM_LEFT_STAGE_2,ARM_RIGHT_STAGE_3,BODY_STAGE_3)
-	if lives >= 0 and lives < 166:
-		change_appearances(ARM_LEFT_STAGE_4,ARM_RIGHT_STAGE_4,BODY_STAGE_4)
+	handle_lives()
+		
 func rotate_towards_mouse():
 		mouse_pos = get_global_mouse_position()
 		arm_1.look_at(mouse_pos)
@@ -96,3 +89,27 @@ func change_appearances(_arm_left,_arm_right,_body):
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
+func handle_lives():
+	if lives >= 499 and lives < 666:
+		change_appearances(ARM_LEFT_STAGE_1,ARM_RIGHT_STAGE_1,BODY_STAGE_1)
+		
+	if lives >= 333 and lives < 499:
+		change_appearances(ARM_LEFT_STAGE_2,ARM_RIGHT_STAGE_2,BODY_STAGE_2)
+	if lives >= 166 and lives < 333:
+		change_appearances(ARM_LEFT_STAGE_2,ARM_RIGHT_STAGE_3,BODY_STAGE_3)
+	if lives >= 0 and lives < 166:
+		change_appearances(ARM_LEFT_STAGE_4,ARM_RIGHT_STAGE_4,BODY_STAGE_4)
+	color_rect.material.set_shader_parameter("softness",lives/80)
+	if lives >= 666:
+		lives = 666
+		
+	
+	if lives <= 0:
+		game_over_screen.show()
+		get_tree().paused = true
+	label.text = "lives: " + str(round(lives))
+	rotate_towards_mouse()
+	if Input.is_action_just_pressed("mouse_left"):
+		shoot_sound.play()
+		spawn_bullets()
+		lives = lives - 5

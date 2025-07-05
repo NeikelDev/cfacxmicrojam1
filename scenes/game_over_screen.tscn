@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfx686liqwn6a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ej6v6"]
+font_size = 200
+font_color = Color(0.634262, 0.0046724, 0.113731, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="game_over_screen" type="CanvasLayer"]
+follow_viewport_scale = 0.001
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 696.0
+offset_top = -2.0
+offset_right = 1843.0
+offset_bottom = 271.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_ej6v6")

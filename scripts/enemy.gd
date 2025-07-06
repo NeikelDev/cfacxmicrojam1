@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 210
+var speed = 250
 var damage = 10
 var health = 100
 var touching_player := false
@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 		var inst = BLOODSPLATTER.instantiate()
 		get_tree().root.add_child(inst)
 		inst.position = position
-		player[0].lives += 15
 		queue_free()
 	if touching_player == false:
 		attack.play("RESET")
@@ -45,4 +44,4 @@ func _on_attack_animation_finished(anim_name: StringName) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 			touching_player = false
-			speed = 210
+			speed = 250

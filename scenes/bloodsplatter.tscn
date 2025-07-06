@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnc7wvc5ogwfh"]
+[gd_scene load_steps=12 format=3 uid="uid://bnc7wvc5ogwfh"]
 
 [ext_resource type="Script" path="res://scripts/bloodsplatter.gd" id="1_k0gbx"]
 [ext_resource type="Texture2D" uid="uid://br8o312np7d65" path="res://sprites/blood_sprite.png" id="1_nmiei"]
+[ext_resource type="AudioStream" uid="uid://b4ai4nocuvj4o" path="res://sounds/hit-flesh-02-266309.mp3" id="3_p4wl4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e34qq"]
 atlas = ExtResource("1_nmiei")
@@ -66,5 +67,9 @@ script = ExtResource("1_k0gbx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hyh3m")
 autoplay = "default"
+
+[node name="blood_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_p4wl4")
+volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

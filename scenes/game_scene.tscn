@@ -58,6 +58,9 @@ stream = ExtResource("3_75kah")
 
 [node name="HUD" parent="." instance=ExtResource("2_u4ey7")]
 
+[node name="Control2" parent="HUD" index="1"]
+metadata/_edit_use_anchors_ = true
+
 [node name="spawn_points" type="Node2D" parent="."]
 script = ExtResource("4_cs7nb")
 

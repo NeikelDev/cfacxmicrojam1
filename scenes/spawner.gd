@@ -26,3 +26,4 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_wait_time_changer_timeout() -> void:
 	spawn_timer.wait_time -= 0.1
+	print(spawn_timer.wait_time)

@@ -24,3 +24,25 @@ text = "666"
 position = Vector2(47, 41)
 scale = Vector2(5.25362, 5.25362)
 texture = ExtResource("1_21r32")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="score" type="Label" parent="Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.5
+offset_right = 79.5
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "0:00"

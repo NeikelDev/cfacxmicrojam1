@@ -49,8 +49,11 @@ const GAME_OVER_SCREEN = preload("res://scenes/game_over_screen.tscn")
 @onready var hurt_sound: AudioStreamPlayer = $hurt_sound
 
 @onready var game_over_buttons: CanvasLayer = $"../game_over_buttons"
+@onready var score: Label = $"../HUD/Control2/score"
 
 var is_dead := false
+
+var score_number := 0.0
 
 var lives := 666.0
 const BULLET = preload("res://scenes/bullet.tscn")
@@ -85,6 +88,10 @@ func _physics_process(delta):
 func _process(delta: float) -> void:
 	if is_dead == false:
 		handle_lives()
+		score_number += 1 * delta
+		score.text = str(score_number).pad_decimals(2)
+	else:
+		score.text = "Score: " + str(score_number).pad_decimals(2)
 		
 func rotate_towards_mouse():
 		mouse_pos = get_global_mouse_position()

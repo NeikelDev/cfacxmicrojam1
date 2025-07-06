@@ -139,6 +139,7 @@ tile_map_data = PackedByteArray("AAD7/wEAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wEAAgAAAAA
 tile_set = SubResource("TileSet_85433")
 
 [node name="game_over_buttons" parent="." instance=ExtResource("15_krs41")]
+visible = false
 script = ExtResource("4_whlgq")
 
 [node name="plants" type="Node2D" parent="."]
@@ -207,26 +208,26 @@ position = Vector2(0, -118)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(4, -38)
+position = Vector2(4, -2)
 shape = SubResource("RectangleShape2D_f20ll")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="wall"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(0, 274)
+position = Vector2(0, 238)
 shape = SubResource("RectangleShape2D_f20ll")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="wall"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-262, 122)
+position = Vector2(-205, 122)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_f20ll")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="wall"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(266, 122)
+position = Vector2(203, 122)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_f20ll")
 

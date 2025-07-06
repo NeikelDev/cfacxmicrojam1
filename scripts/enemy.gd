@@ -7,11 +7,16 @@ var touching_player := false
 @onready var attack: AnimationPlayer = $attack
 const BLOODSPLATTER = preload("res://scenes/bloodsplatter.tscn")
 @onready var player = get_tree().get_nodes_in_group("player")
-
+const BLOOD_ON_GROUND = preload("res://scenes/blood_on_ground.tscn")
 
 func _process(delta: float) -> void:
 	position += position.direction_to(player[0].position) * speed * delta
+	if player[0].is_dead == true:
+		queue_free()
 	if health <= 0:
+		var inst_2 = BLOOD_ON_GROUND.instantiate()
+		get_tree().root.add_child(inst_2)
+		inst_2.position = position
 		var inst = BLOODSPLATTER.instantiate()
 		get_tree().root.add_child(inst)
 		inst.position = position

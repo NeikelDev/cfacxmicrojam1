@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d730s4db8xs"]
+
+[ext_resource type="Script" path="res://scripts/blood_on_ground.gd" id="1_f34j2"]
+[ext_resource type="Texture2D" uid="uid://cpgtpkxpbubi7" path="res://sprites/blood_on_ground.png" id="1_qva17"]
+
+[node name="blood_on_ground" type="Node2D"]
+script = ExtResource("1_f34j2")
+
+[node name="blood" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_qva17")
+
+[node name="blood_remover" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="blood_remover" to="." method="_on_blood_remover_timeout"]

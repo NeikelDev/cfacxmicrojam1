@@ -15,6 +15,9 @@ var mouse_pos : Vector2
 var is_dashing := false
 @onready var shoot_sound: AudioStreamPlayer = $shoot_sound
 
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $death_anim/AnimatedSprite2D
+
 const ARM_LEFT_STAGE_1 = preload("res://sprites/stage_1/arm_left_stage_1.png")
 const ARM_RIGHT_STAGE_1 = preload("res://sprites/stage_1/arm_right_stage_1.png")
 const BODY_STAGE_1 = preload("res://sprites/stage_1/body_stage_1.png")
@@ -41,37 +44,47 @@ const GAME_OVER_SCREEN = preload("res://scenes/game_over_screen.tscn")
 
 @onready var label: Label = $"../HUD/Control/Label"
 
+@onready var main_music: AudioStreamPlayer = $"../music_handler/main_music"
+
+@onready var hurt_sound: AudioStreamPlayer = $hurt_sound
+
+@onready var game_over_buttons: CanvasLayer = $"../game_over_buttons"
+
+var is_dead := false
+
 var lives := 666.0
 const BULLET = preload("res://scenes/bullet.tscn")
 func _physics_process(delta):
-	character_direction.x = Input.get_axis("left", "right")
-	character_direction.y = Input.get_axis("up", "down")
-	character_direction = character_direction.normalized()
-	if is_dashing == true:
-		movement_speed = 800
-	else:
-		movement_speed = 200
-	#flip
-	if character_direction.x > 0 : $body.flip_h = true
-	elif character_direction.x < 0 : $body.flip_h = false
-	
-	if character_direction:
-		velocity = character_direction * movement_speed
-		lives -= 10 * delta
-		moving_anim.play("moving")
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
-		moving_anim.stop()
-	
-	if Input.is_action_just_pressed("dash") and velocity != Vector2(0,0):
-		is_dashing = true
-		lives -= 50
-		dash_timer.start()
-	move_and_slide()
-	
+	if is_dead == false:
+		character_direction.x = Input.get_axis("left", "right")
+		character_direction.y = Input.get_axis("up", "down")
+		character_direction = character_direction.normalized()
+		if is_dashing == true:
+			movement_speed = 800
+		else:
+			movement_speed = 200
+		#flip
+		if character_direction.x > 0 : $body.flip_h = true
+		elif character_direction.x < 0 : $body.flip_h = false
+		
+		if character_direction:
+			velocity = character_direction * movement_speed
+			lives -= 10 * delta
+			moving_anim.play("moving")
+		else:
+			velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
+			moving_anim.stop()
+		
+		if Input.is_action_just_pressed("dash") and velocity != Vector2(0,0):
+			is_dashing = true
+			lives -= 50
+			dash_timer.start()
+		move_and_slide()
+		
 
 func _process(delta: float) -> void:
-	handle_lives()
+	if is_dead == false:
+		handle_lives()
 		
 func rotate_towards_mouse():
 		mouse_pos = get_global_mouse_position()
@@ -101,15 +114,24 @@ func handle_lives():
 	if lives >= 0 and lives < 166:
 		change_appearances(ARM_LEFT_STAGE_4,ARM_RIGHT_STAGE_4,BODY_STAGE_4)
 	color_rect.material.set_shader_parameter("softness",lives/80)
+	if color_rect.material.get_shader_parameter("softness") <= 0.8:
+		color_rect.material.set_shader_parameter("softness",0.8)
 	if lives >= 666:
 		lives = 666
 		
 	
 	if lives <= 0:
+		is_dead = true
 		lives = 0
 		game_over_screen.show()
 		game_over_plane.show()
-		get_tree().paused = true
+		#Engine.time_scale = 0
+		main_music.stop()
+		animated_sprite_2d.play()
+		animated_sprite_2d.show()
+		moving_anim.stop()
+		hurt_sound.play()
+		game_over_buttons.show()
 	label.text = str(round(lives))
 	rotate_towards_mouse()
 	
@@ -117,3 +139,4 @@ func handle_lives():
 		shoot_sound.play()
 		spawn_bullets()
 		lives = lives - 5
+		

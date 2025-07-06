@@ -139,7 +139,6 @@ tile_map_data = PackedByteArray("AAD7/wEAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wEAAgAAAAA
 tile_set = SubResource("TileSet_85433")
 
 [node name="game_over_buttons" parent="." instance=ExtResource("15_krs41")]
-visible = false
 script = ExtResource("4_whlgq")
 
 [node name="plants" type="Node2D" parent="."]

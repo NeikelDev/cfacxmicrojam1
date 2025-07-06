@@ -57,7 +57,7 @@ func _physics_process(delta):
 	
 	if character_direction:
 		velocity = character_direction * movement_speed
-		lives -= 30 * delta
+		lives -= 10 * delta
 		moving_anim.play("moving")
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)

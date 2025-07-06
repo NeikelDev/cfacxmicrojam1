@@ -11,6 +11,7 @@ var enemies = [ENEMY]
 @onready var spawner_8: Node2D = $spawner8
 @onready var spawner_9: Node2D = $spawner9
 @onready var spawn_points := [spawner,spawner_2,spawner_3,spawner_4,spawner_5,spawner_6,spawner_7,spawner_8,spawner_9]
+@onready var spawn_timer: Timer = $spawn_timer
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -20,3 +21,8 @@ func _on_spawn_timer_timeout() -> void:
 	var inst = enemies[rand_enemy].instantiate()
 	get_tree().root.add_child(inst)
 	inst.position = spawn_points[rand_spawn].position
+	
+
+
+func _on_wait_time_changer_timeout() -> void:
+	spawn_timer.wait_time -= 0.1

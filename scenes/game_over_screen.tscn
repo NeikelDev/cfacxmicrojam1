@@ -7,11 +7,14 @@ follow_viewport_scale = 0.001
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="game_over" type="Sprite2D" parent="Control"]
-position = Vector2(1241, 243)
 scale = Vector2(21.8157, 21.8157)
 texture = ExtResource("1_ykfpo")

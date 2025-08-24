@@ -22,7 +22,7 @@ shader_parameter/color = Color(0.500741, 7.94157e-07, 3.36915e-07, 0.737255)
 shader_parameter/multiplier = 0.2
 shader_parameter/softness = 5.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0behj"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7oc3e"]
 texture = ExtResource("7_bvq60")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -32,7 +32,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_85433"]
 tile_size = Vector2i(32, 32)
-sources/2 = SubResource("TileSetAtlasSource_0behj")
+sources/2 = SubResource("TileSetAtlasSource_7oc3e")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f20ll"]
 size = Vector2(524, 20)
@@ -195,12 +195,10 @@ script = ExtResource("10_cjxot")
 
 [node name="intro" type="AudioStreamPlayer" parent="music_handler"]
 stream = ExtResource("10_oansg")
-volume_db = -10.0
 autoplay = true
 
 [node name="main_music" type="AudioStreamPlayer" parent="music_handler"]
 stream = ExtResource("12_oy3ja")
-volume_db = -10.0
 
 [node name="wall" type="StaticBody2D" parent="."]
 position = Vector2(0, -118)
@@ -234,6 +232,7 @@ shape = SubResource("RectangleShape2D_f20ll")
 [connection signal="timeout" from="spawn_points/spawn_timer" to="spawn_points" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="spawn_points/wait_time_changer" to="spawn_points" method="_on_wait_time_changer_timeout"]
 [connection signal="pressed" from="game_over_buttons/Control/restart_button" to="game_over_buttons" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="game_over_buttons/Control2/menu_button" to="game_over_buttons" method="_on_menu_button_pressed"]
 [connection signal="finished" from="music_handler/intro" to="music_handler" method="_on_intro_finished"]
 [connection signal="finished" from="music_handler/main_music" to="music_handler" method="_on_main_music_finished"]
 

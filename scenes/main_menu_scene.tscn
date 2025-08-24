@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b87rf2ksw7hfr"]
+[gd_scene load_steps=9 format=3 uid="uid://b87rf2ksw7hfr"]
 
 [ext_resource type="Texture2D" uid="uid://bj3b1isf3ovx2" path="res://sprites/buttons/start_button_up.png" id="1_541j6"]
+[ext_resource type="Script" path="res://scripts/main_menu_scene.gd" id="1_y4154"]
 [ext_resource type="Texture2D" uid="uid://dmk7pus15cicd" path="res://sprites/buttons/start_button_down.png" id="2_i22uy"]
-[ext_resource type="Texture2D" uid="uid://d181qbfasdyyx" path="res://sprites/buttons/setting_button_up.png" id="3_b10wn"]
-[ext_resource type="Texture2D" uid="uid://cf7cfbfq2sxdg" path="res://sprites/buttons/setting_button_down.png" id="4_blgi1"]
 [ext_resource type="Texture2D" uid="uid://c7feorfm40p5a" path="res://sprites/buttons/credits_button_up.png" id="5_o8b54"]
 [ext_resource type="Texture2D" uid="uid://brn5ap1wy1jkg" path="res://sprites/buttons/credits_button_down.png" id="6_jhosj"]
 [ext_resource type="Texture2D" uid="uid://cnw4tcgmxux12" path="res://sprites/buttons/quit_button_up.png" id="7_vnm18"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dth6g17y82rwq" path="res://sprites/buttons/pixil-frame-0.png" id="9_yqykq"]
 
 [node name="main_menu_scene" type="CanvasLayer"]
+script = ExtResource("1_y4154")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -58.0
@@ -22,37 +22,27 @@ color = Color(0.188235, 0, 0, 1)
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 187.0
+offset_left = 234.0
 offset_top = 242.0
-offset_right = 227.0
+offset_right = 274.0
 offset_bottom = 282.0
 
 [node name="start_button" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 385.0
+offset_left = 565.0
 offset_top = 265.0
-offset_right = 485.0
+offset_right = 597.0
 offset_bottom = 281.0
 scale = Vector2(10, 10)
 texture_normal = ExtResource("1_541j6")
 texture_pressed = ExtResource("2_i22uy")
 
-[node name="settings_button" type="TextureButton" parent="Control"]
-layout_mode = 0
-offset_left = 741.0
-offset_top = 271.0
-offset_right = 781.0
-offset_bottom = 311.0
-scale = Vector2(10, 10)
-texture_normal = ExtResource("3_b10wn")
-texture_pressed = ExtResource("4_blgi1")
-
 [node name="credits_button" type="TextureButton" parent="Control"]
 layout_mode = 0
 offset_left = 384.0
 offset_top = 434.0
-offset_right = 424.0
-offset_bottom = 474.0
+offset_right = 418.0
+offset_bottom = 450.0
 scale = Vector2(10, 10)
 texture_normal = ExtResource("5_o8b54")
 texture_pressed = ExtResource("6_jhosj")
@@ -66,8 +56,8 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 728.0
 offset_top = 403.0
-offset_right = 768.0
-offset_bottom = 443.0
+offset_right = 760.0
+offset_bottom = 419.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(10, 10)
@@ -78,3 +68,7 @@ texture_pressed = ExtResource("8_4c7q6")
 position = Vector2(943, 309)
 scale = Vector2(20, 20)
 texture = ExtResource("9_yqykq")
+
+[connection signal="pressed" from="Control/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Control/quit_button" to="." method="_on_quit_button_pressed"]

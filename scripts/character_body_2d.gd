@@ -58,41 +58,43 @@ var score_number := 0.0
 var lives := 666.0
 const BULLET = preload("res://scenes/bullet.tscn")
 func _physics_process(delta):
-	if is_dead == false:
-		character_direction.x = Input.get_axis("left", "right")
-		character_direction.y = Input.get_axis("up", "down")
-		character_direction = character_direction.normalized()
-		if is_dashing == true:
-			movement_speed = 800
-		else:
-			movement_speed = 200
-		#flip
-		if character_direction.x > 0 : $body.flip_h = true
-		elif character_direction.x < 0 : $body.flip_h = false
-		
-		if character_direction:
-			velocity = character_direction * movement_speed
-			lives -= 10 * delta
-			moving_anim.play("moving")
-		else:
-			velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
-			moving_anim.stop()
-		
-		if Input.is_action_just_pressed("dash") and velocity != Vector2(0,0):
-			is_dashing = true
-			lives -= 50
-			dash_timer.start()
-		move_and_slide()
-		
+	if Settings.is_in_settings == false:
+		if is_dead == false:
+			character_direction.x = Input.get_axis("left", "right")
+			character_direction.y = Input.get_axis("up", "down")
+			character_direction = character_direction.normalized()
+			if is_dashing == true:
+				movement_speed = 800
+			else:
+				movement_speed = 200
+			#flip
+			if character_direction.x > 0 : $body.flip_h = true
+			elif character_direction.x < 0 : $body.flip_h = false
+			
+			if character_direction:
+				velocity = character_direction * movement_speed
+				lives -= 10 * delta
+				moving_anim.play("moving")
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
+				moving_anim.stop()
+			
+			if Input.is_action_just_pressed("dash") and velocity != Vector2(0,0):
+				is_dashing = true
+				lives -= 50
+				dash_timer.start()
+			move_and_slide()
+			
 
 func _process(delta: float) -> void:
-	if is_dead == false:
-		handle_lives()
-		score_number += 1 * delta
-		score.text = str(score_number).pad_decimals(2)
-	else:
-		score.text = "Score: " + str(score_number).pad_decimals(2)
-		
+	if Settings.is_in_settings == false:
+		if is_dead == false:
+			handle_lives()
+			score_number += 1 * delta
+			score.text = str(score_number).pad_decimals(2)
+		else:
+			score.text = "Score: " + str(score_number).pad_decimals(2)
+			
 func rotate_towards_mouse():
 		mouse_pos = get_global_mouse_position()
 		arm_1.look_at(mouse_pos)
